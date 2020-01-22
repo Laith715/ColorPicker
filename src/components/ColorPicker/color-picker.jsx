@@ -13,7 +13,7 @@ function ColorPicker(props) {
   const [value, setValue] = useState(defaultColor.hex);
 
   const [selected, setSelected] = useState(defaultColor);
-  
+
   const onChange = (newValue) => {
     setValue(newValue.hex);
   };
@@ -21,11 +21,12 @@ function ColorPicker(props) {
   const onSelect = (newValue) => {
     setSelected(newValue);
   };
-  return (<div className='color-picker'>
-    <InputHex value={value}></InputHex>
-    <SliderDropDown selected={selected} onChange={onChange} onSelect={onSelect}></SliderDropDown>
-    <SelectDropDown title={''} items={colors} onSelect={(item) => { setSelected(item); setValue(item.hex); }}></SelectDropDown>
-  </div>);
+  return (
+    <div className='color-picker'>
+      <InputHex value={value}></InputHex>
+      <SliderDropDown selected={selected} onChange={onChange} onSelect={onSelect}></SliderDropDown>
+      <SelectDropDown title={''} items={colors} onSelect={(item) => { setSelected(item); setValue(item.hex); }}></SelectDropDown>
+    </div>);
 }
 
 export default ColorPicker;

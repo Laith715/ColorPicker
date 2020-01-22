@@ -22,9 +22,9 @@ function SelectDropDown(props) {
                 <ul className={'drop-down-list'}>{
                     values.map(item =>
                         (<li key={item.name} className={'drop-down-list-item'} onClick={() => onSelect(item)}>
-                            {item.name} <ColorBlock color={item.hex}></ColorBlock>
+                            {item.name} <div className={'right vertical-center'}><ColorBlock color={item.hex}></ColorBlock></div>
                         </li>))
                 }</ul>}
-        </div>);
+        </div >);
 }
 export default SelectDropDown;
