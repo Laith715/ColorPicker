@@ -1,0 +1,8 @@
+.input-hex {
+    border: silver;
+    border-top: none;
+    border-bottom: none;
+    border-left: none;
+    border-radius: 0%;
+    text-align: center;
+}
