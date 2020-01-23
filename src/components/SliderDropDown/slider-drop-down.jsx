@@ -14,7 +14,7 @@ function SliderDropDown(props) {
     useOutsideClick(ref, () => setOpen(false))
 
     useEffect(() => {
-            setChanged(Object.assign(new ColorModel(), selected));
+        setChanged(Object.assign(new ColorModel(), selected));
     }, [selected]);
 
     return (
@@ -27,22 +27,23 @@ function SliderDropDown(props) {
             </div>
 
             {isOpen &&
-                <div className={'slider-drop-down-content'}><fieldset>
-                    <label htmlFor="r">R</label>
-                    <input type="range"
-                        min={Constants.minRGB}
-                        max={Constants.maxRGB}
-                        step={Constants.RGBstep}
-                        value={changed.R}
-                        onChange={(event) => {
-                            const newValue = new ColorModel('FromSlider', event.target.value, changed.G, changed.B);
-                            setChanged(newValue);
-                            onChange(newValue);
-                        }
-                        }
-                    ></input>
-                </fieldset>
-                    <fieldset>
+                <div className={'slider-drop-down-content'}>
+                    <fieldset className={'slider-drop-down-content-item'}>
+                        <label htmlFor="r">R</label>
+                        <input type="range"
+                            min={Constants.minRGB}
+                            max={Constants.maxRGB}
+                            step={Constants.RGBstep}
+                            value={changed.R}
+                            onChange={(event) => {
+                                const newValue = new ColorModel('FromSlider', event.target.value, changed.G, changed.B);
+                                setChanged(newValue);
+                                onChange(newValue);
+                            }
+                            }
+                        ></input>
+                    </fieldset>
+                    <fieldset className={'slider-drop-down-content-item'}>
                         <label htmlFor="G">G</label>
                         <input type="range"
                             min={Constants.minRGB}
@@ -55,7 +56,7 @@ function SliderDropDown(props) {
                                 onChange(newValue);
                             }}></input>
                     </fieldset>
-                    <fieldset>
+                    <fieldset className={'slider-drop-down-content-item'}>
                         <label htmlFor="B">B</label>
                         <input type="range"
                             min={Constants.minRGB}
@@ -68,7 +69,7 @@ function SliderDropDown(props) {
                                 onChange(newValue);
                             }}></input>
                     </fieldset>
-                    <fieldset>
+                    <fieldset className={'slider-drop-down-content-item'}>
                         <div className={'slider-buttons'}>
                             <button className={'cancel-button'}
                                 onClick={() => {

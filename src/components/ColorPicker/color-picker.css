@@ -1,6 +1,9 @@
 .color-picker {
     display: flex;
-    width: 50%;
+    width: 35%;
     height: 50%;
     justify-content: center;
+    margin: 1%;
+    border: darkslategray;
+    border-style: double;
 }
