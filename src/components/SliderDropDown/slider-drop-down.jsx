@@ -1,27 +1,29 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import './slider-drop-down.css';
 import Constants from '../../constants';
 import ColorModel from '../../models/color.model';
 import ColorBlock from '../ColorBlock/color-block';
+import useOutsideClick from "../OutsideClick/outside-click";
 
 function SliderDropDown(props) {
     const { onChange, onSelect, selected } = props;
-    const [previouslySelected, setPreviouslySelected] = useState(selected);
     const [changed, setChanged] = useState(Object.assign(new ColorModel(), selected));
     const [isOpen, setOpen] = useState(false);
+    const ref = useRef();
+
+    useOutsideClick(ref, () => setOpen(false))
 
     useEffect(() => {
-        if (previouslySelected !== selected) {
             setChanged(Object.assign(new ColorModel(), selected));
-            setPreviouslySelected(selected);
-        }
-    });
+    }, [selected]);
 
     return (
-        <div className={'slider-drop-down-wrapper'}>
-            <div className={'slider-drop-down-header'} onClick={() => setOpen(!isOpen)}>
+        <div className={'slider-drop-down-wrapper'} ref={ref}>
+            <div className={'slider-drop-down-header'} onClick={() => { setOpen(!isOpen); }
+            }>
                 <div className={'slider-drop-down-title'}>
-                    <ColorBlock color={changed.hex}></ColorBlock></div>
+                    <ColorBlock color={changed.hex}></ColorBlock>
+                </div>
             </div>
 
             {isOpen &&
@@ -70,7 +72,7 @@ function SliderDropDown(props) {
                         <div className={'slider-buttons'}>
                             <button className={'cancel-button'}
                                 onClick={() => {
-                                    onSelect(Object.assign(new ColorModel(), previouslySelected));
+                                    setChanged(selected);
                                     setOpen(false);
                                 }}>
                                 Cancel

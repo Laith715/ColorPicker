@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import './color-picker.css';
 import InputHex from '../InputHex/input-hex'
 import SelectDropDown from '../SelectDropDown/select-drop-down';
@@ -8,12 +8,14 @@ import Constants from '../../constants';
 
 function ColorPicker(props) {
 
-  const [colors, setColors] = useState(Constants.ColorSelectValues);
+  const [colors] = useState(Constants.ColorSelectValues);
   const defaultColor = colors.length > 0 ? colors[0] : new ColorModel('Black', Constants.defaultRGBvalue, Constants.defaultRGBvalue, Constants.defaultRGBvalue)
   const [value, setValue] = useState(defaultColor.hex);
 
   const [selected, setSelected] = useState(defaultColor);
+
   const [selectDropDownIsOpen, setSelectDropDownOpen] = useState(false);
+  const [sliderDropDownIsOpen, setSliderDropDownOpen] = useState(false);
 
   const onChange = (newValue) => {
     setValue(newValue.hex);
@@ -26,8 +28,21 @@ function ColorPicker(props) {
   return (
     <div className='color-picker'>
       <InputHex value={value}></InputHex>
-      <SliderDropDown selected={selected} onChange={onChange} onSelect={(item) => onSelect(item)}></SliderDropDown>
-      <SelectDropDown title={''} isSelectDropDownOpen={selectDropDownIsOpen} items={colors} onSelect={(item) => onSelect(item)}></SelectDropDown>
+      <SliderDropDown selected={selected}
+        sliderIsOpen={sliderDropDownIsOpen}
+        onSliderDropDownOpen={() => {
+          setSelectDropDownOpen(false);
+          setSliderDropDownOpen(true);
+        }}
+        onChange={onChange} onSelect={(item) => onSelect(item)}>
+      </SliderDropDown>
+      <SelectDropDown selectIsOpen={selectDropDownIsOpen}
+        onSelectDropDownOpen={() => {
+          setSliderDropDownOpen(false);
+          setSelectDropDownOpen(true);
+        }}
+        items={colors}
+        onSelect={(item) => onSelect(item)}></SelectDropDown>
     </div>);
 }
 
