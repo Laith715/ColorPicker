@@ -6,3 +6,26 @@
     align-items: center;
     justify-content: center;
 }
+
+.slider-drop-down-content {
+    z-index: 10;
+    position: absolute;
+    padding-top: 40px;
+    background-color: rgba(255, 255, 255, 0.884);
+    display: flex;
+    flex-direction: column;
+}
+
+.slider-buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+.ok-button {
+    background-color: rgb(132, 185, 24);
+}
+
+.cancel-button {
+    background-color: dimgrey;
+}
